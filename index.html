@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Beach Volleyball Mini App</title>
+<style>
+  body{font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial; padding:12px; }
+  input[type="text"]{font-size:16px; padding:6px; width:100%; box-sizing:border-box;}
+  button{font-size:16px; padding:10px; margin:6px 0; width:100%;}
+  table{width:100%; border-collapse:collapse; margin-top:8px;}
+  th, td{border:1px solid #ccc; padding:6px; text-align:center; font-size:14px;}
+  th{background:#f6f6f6;}
+  .small{font-size:13px;}
+  .grid{display:grid; grid-template-columns:repeat(5,1fr); gap:8px;}
+  @media (max-width:520px){ .grid{grid-template-columns:repeat(2,1fr);} }
+  .muted{color:#666; font-size:13px;}
+</style>
+</head>
+<body>
+<h2>Beach Volleyball — Mini App</h2>
+<p class="muted">Enter 5 player names, generate a balanced 10-match grid, input winners/scores and update stats.</p>
+
+<div>
+  <div style="margin-bottom:8px;">
+    <div class="grid" id="nameInputs">
+      <input>
+      <input>
+      <input>
+      <input>
+      <input>
+    </div>
+  </div>
+
+  <button id="generateBtn">Generate Matches</button>
+  <button id="updateBtn">Update Stats</button>
+  <button id="resetBtn">Reset Scores/Winners</button>
+</div>
+
+<h3>Matches</h3>
+<table id="matchesTable" aria-label="Matches table">
+  <thead>
+    <tr>
+      <th>#</th><th>Team 1</th><th>Team 2</th><th>Resting</th><th>Winner</th><th>Score T1</th><th>Score T2</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<h3>Player Stats</h3>
+<table id="statsTable" aria-label="Player stats">
+  <thead>
+    <tr><th>Player</th><th>Wins</th><th>Losses</th><th>Points Scored</th><th>Points Conceded</th><th>Total Points</th></tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<script>
+(function(){
+  const generateBtn = document.getElementById('generateBtn');
+  const updateBtn = document.getElementById('updateBtn');
+  const resetBtn = document.getElementById('resetBtn');
+  const matchesTbody = document.querySelector('#matchesTable tbody');
+  const statsTbody = document.querySelector('#statsTable tbody');
+
+  function getNames(){
+    const names = [];
+    for(let i=0;i<5;i++){
+      const v = document.getElementById('p'+i).value.trim();
+      names.push(v || ('Player'+(i+1)));
+    }
+    return names;
+  }
+
+  function shuffle(arr){
+    const a = arr.slice();
+    for(let i=a.length-1;i>0;i--){
+      const j=Math.floor(Math.random()*(i+1));
+      [a[i],a[j]]=[a[j],a[i]];
+    }
+    return a;
+  }
+
+  function generateBalancedMatches(){
+    const players = getNames();
+    // create restList with each player twice
+    let restList = [];
+    players.forEach(p=>{ restList.push(p); restList.push(p); });
+    restList = shuffle(restList);
+
+    // ensure restList length 10, if shuffle produces same consecutive rests for same player it's OK
+    // create matches
+    const matches = [];
+    for(let i=0;i<10;i++){
+      const resting = restList[i];
+      const active = players.filter(p=>p!==resting);
+      const shuffledActive = shuffle(active);
+      const t1 = [shuffledActive[0], shuffledActive[1]];
+      const t2 = [shuffledActive[2], shuffledActive[3]];
+      matches.push({match: i+1, t1, t2, resting, winner:'', s1:'', s2:''});
+    }
+    return matches;
+  }
+
+  function renderMatches(matches){
+    matchesTbody.innerHTML='';
+    matches.forEach(m=>{
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${m.match}</td>
+        <td>${escapeHtml(m.t1[0])} / ${escapeHtml(m.t1[1])}</td>
+        <td>${escapeHtml(m.t2[0])} / ${escapeHtml(m.t2[1])}</td>
+        <td>${escapeHtml(m.resting)}</td>
+        <td>
+          <select data-match="${m.match}" class="winnerSel">
+            <option value=""></option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+          </select>
+        </td>
+        <td><input type="number" min="0" step="1" class="score1" data-match="${m.match}" style="width:80px"></td>
+        <td><input type="number" min="0" step="1" class="score2" data-match="${m.match}" style="width:80px"></td>`;
+      matchesTbody.appendChild(tr);
+    });
+  }
+
+  function escapeHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  function renderStats(names){
+    statsTbody.innerHTML='';
+    names.forEach(n=>{
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${escapeHtml(n)}</td><td class="played">0</td><td class="wins">0</td><td class="losses">0</td><td class="scored">0</td><td class="conceded">0</td><td class="total">0</td>`;
+      statsTbody.appendChild(tr);
+    });
+  }
+
+  function readMatchesFromTable(){
+    // read current matches from DOM rows
+    const rows = Array.from(matchesTbody.querySelectorAll('tr'));
+    return rows.map(row=>{
+      const cells = row.children;
+      const match = Number(cells[0].textContent);
+      const t1txt = cells[1].textContent.split(' / ').map(s=>s.trim());
+      const t2txt = cells[2].textContent.split(' / ').map(s=>s.trim());
+      const resting = cells[3].textContent.trim();
+      const winnerSel = row.querySelector('.winnerSel');
+      const winner = winnerSel ? winnerSel.value : '';
+      const s1input = row.querySelector('.score1');
+      const s2input = row.querySelector('.score2');
+      const s1 = s1input && s1input.value !== '' ? Number(s1input.value) : null;
+      const s2 = s2input && s2input.value !== '' ? Number(s2input.value) : null;
+      return {match, t1: t1txt, t2: t2txt, resting, winner, s1, s2};
+    });
+  }
+
+  function updateStats(){
+    const names = getNames();
+    const stats = {};
+    names.forEach(n=> stats[n]={played:0,wins:0,losses:0,scored:0,conceded:0});
+    const matches = readMatchesFromTable();
+
+    matches.forEach(m=>{
+      // skip invalid rows where teams not present
+      if(!m.t1[0] || !m.t2[0]) return;
+      // for each player in teams, increment played
+      m.t1.concat(m.t2).forEach(p=>{
+        if(!(p in stats)) stats[p]={played:0,wins:0,losses:0,scored:0,conceded:0};
+        stats[p].played += 1;
+      });
+      // points handling
+      const score1 = (m.s1===null)?0:m.s1;
+      const score2 = (m.s2===null)?0:m.s2;
+      // add points scored/conceded
+      m.t1.forEach(p=>{ stats[p].scored += score1; stats[p].conceded += score2; });
+      m.t2.forEach(p=>{ stats[p].scored += score2; stats[p].conceded += score1; });
+
+      // winner by dropdown if set; if not set but scores present, determine winner by scores
+      let winner = m.winner;
+      if(!winner){
+        if(m.s1!==null && m.s2!==null){
+          if(m.s1 > m.s2) winner = '1';
+          else if(m.s2 > m.s1) winner = '2';
+        }
+      }
+      if(winner==='1'){
+        m.t1.forEach(p=>{ stats[p].wins += 1; });
+        m.t2.forEach(p=>{ stats[p].losses += 1; });
+      } else if(winner==='2'){
+        m.t2.forEach(p=>{ stats[p].wins += 1; });
+        m.t1.forEach(p=>{ stats[p].losses += 1; });
+      }
+    });
+
+    // render to table (in order of current name inputs)
+    renderStats(names);
+    const rows = Array.from(statsTbody.querySelectorAll('tr'));
+    rows.forEach((tr, idx)=>{
+      const n = names[idx];
+      const s = stats[n] || {played:0,wins:0,losses:0,scored:0,conceded:0};
+      tr.querySelector('.played').textContent = s.played;
+      tr.querySelector('.wins').textContent = s.wins;
+      tr.querySelector('.losses').textContent = s.losses;
+      tr.querySelector('.scored').textContent = s.scored;
+      tr.querySelector('.conceded').textContent = s.conceded;
+      tr.querySelector('.total').textContent = s.scored - s.conceded;
+    });
+  }
+
+  // reset winners/scores in matches table
+  function resetScores(){
+    const rows = Array.from(matchesTbody.querySelectorAll('tr'));
+    rows.forEach(row=>{
+      const sel = row.querySelector('.winnerSel');
+      const s1 = row.querySelector('.score1');
+      const s2 = row.querySelector('.score2');
+      if(sel) sel.value = '';
+      if(s1) s1.value = '';
+      if(s2) s2.value = '';
+    });
+    // clear stats visually
+    renderStats(getNames());
+  }
+
+  // initial render
+  renderStats(getNames());
+
+  generateBtn.addEventListener('click', ()=>{
+    const matches = generateBalancedMatches();
+    renderMatches(matches);
+    // clear stats and winners/scores
+    renderStats(getNames());
+  });
+
+  updateBtn.addEventListener('click', ()=>{
+    updateStats();
+  });
+
+  resetBtn.addEventListener('click', ()=>{
+    resetScores();
+  });
+
+  // allow live update when name inputs change (update stat player order)
+  document.getElementById('nameInputs').addEventListener('input', ()=>{
+    renderStats(getNames());
+  });
+
+})();</script>
+</body>
+</html>
