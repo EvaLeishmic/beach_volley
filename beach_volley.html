@@ -1,278 +1,249 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.7">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Beach Volleyball Mini App</title>
+<style>
+  body{font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial; padding:12px; }
+  input[type="text"]{font-size:16px; padding:6px; width:100%; box-sizing:border-box;}
+  button{font-size:16px; padding:10px; margin:6px 0; width:100%;}
+  table{width:100%; border-collapse:collapse; margin-top:8px;}
+  th, td{border:1px solid #ccc; padding:6px; text-align:center; font-size:14px;}
+  th{background:#f6f6f6;}
+  .small{font-size:13px;}
+  .grid{display:grid; grid-template-columns:repeat(5,1fr); gap:8px;}
+  @media (max-width:520px){ .grid{grid-template-columns:repeat(2,1fr);} }
+  .muted{color:#666; font-size:13px;}
+</style>
 </head>
 <body>
-<p class="p1">&lt;!doctype html&gt;</p>
-<p class="p1">&lt;html lang="en"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1">&lt;meta charset="utf-8"/&gt;</p>
-<p class="p1">&lt;meta name="viewport" content="width=device-width,initial-scale=1"/&gt;</p>
-<p class="p1">&lt;title&gt;Beach Volley&lt;/title&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;!-- PWA / iOS meta --&gt;</p>
-<p class="p1">&lt;meta name="apple-mobile-web-app-capable" content="yes"&gt;</p>
-<p class="p1">&lt;meta name="apple-mobile-web-app-title" content="Beach Volley"&gt;</p>
-<p class="p1">&lt;meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;!-- Embedded apple-touch-icon (inline SVG data URL) --&gt;</p>
-<p class="p1">&lt;link rel="apple-touch-icon" href='data:image/svg+xml;utf8,</p>
-<p class="p1">&lt;svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180"&gt;</p>
-<p class="p1">&lt;rect rx="30" ry="30" width="180" height="180" fill="%23FDBA3B"/&gt;</p>
-<p class="p1">&lt;g transform="translate(15,15) scale(0.777)" stroke="%23000" stroke-width="6" fill="%23fff"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;circle cx="60" cy="60" r="60" /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;path d="M60 0 C78 18 94 30 120 28" stroke="%23000" stroke-width="6" fill="none"/&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;path d="M0 60 C18 42 40 34 60 32" stroke="%23000" stroke-width="6" fill="none"/&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;path d="M120 92 C100 110 80 118 60 120" stroke="%23000" stroke-width="6" fill="none"/&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;path d="M32 120 C50 100 66 90 92 92" stroke="%23000" stroke-width="6" fill="none"/&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;path d="M98 22 C86 40 74 58 60 60" stroke="%23000" stroke-width="6" fill="none"/&gt;</p>
-<p class="p1">&lt;/g&gt;</p>
-<p class="p1">&lt;/svg&gt;'&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>:root{font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial; color:#111;}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>body{padding:14px; margin:0; background:#fff; -webkit-font-smoothing:antialiased;}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>h1,h2{margin:8px 0;}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>input[type="text"], input[type="number"], select{font-size:15px; padding:8px; width:100%; box-sizing:border-box;}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>button{font-size:16px; padding:10px; margin:8px 0; width:100%; box-sizing:border-box;}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>table{width:100%; border-collapse:collapse; margin-top:8px;}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>th,td{border:1px solid #ddd; padding:8px; text-align:center; font-size:14px;}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>th{background:#f8f8f8;}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>.grid{display:grid; grid-template-columns:repeat(2,1fr); gap:8px;}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>@media(min-width:520px){ .grid{grid-template-columns:repeat(5,1fr);} }</p>
-<p class="p1"><span class="Apple-converted-space">  </span>.muted{color:#666; font-size:13px;}</p>
-<p class="p1">&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;h1&gt;Beach Volley&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;p class="muted"&gt;Enter 5 names, generate a balanced 10-match grid, enter winners/scores, then Update Stats.&lt;/p&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div style="margin-bottom:8px;"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="grid" id="nameInputs"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;input id="p0" type="text" placeholder="Player 1"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;input id="p1" type="text" placeholder="Player 2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;input id="p2" type="text" placeholder="Player 3"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;input id="p3" type="text" placeholder="Player 4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;input id="p4" type="text" placeholder="Player 5"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;button id="generateBtn"&gt;Generate Matches&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;button id="updateBtn"&gt;Update Stats&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;button id="resetBtn"&gt;Reset Scores/Winners&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;h2&gt;Matches&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;table id="matchesTable" aria-label="Matches"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;thead&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;tr&gt;&lt;th&gt;#&lt;/th&gt;&lt;th&gt;Team 1&lt;/th&gt;&lt;th&gt;Team 2&lt;/th&gt;&lt;th&gt;Resting&lt;/th&gt;&lt;th&gt;Winner&lt;/th&gt;&lt;th&gt;Score T1&lt;/th&gt;&lt;th&gt;Score T2&lt;/th&gt;&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/thead&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;tbody&gt;&lt;/tbody&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/table&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;h2&gt;Player Stats&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;table id="statsTable" aria-label="Player Stats"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;thead&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;tr&gt;&lt;th&gt;Player&lt;/th&gt;&lt;th&gt;Wins&lt;/th&gt;&lt;th&gt;Losses&lt;/th&gt;&lt;th&gt;Points Scored&lt;/th&gt;&lt;th&gt;Points Conceded&lt;/th&gt;&lt;th&gt;Total Points&lt;/th&gt;&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/thead&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;tbody&gt;&lt;/tbody&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/table&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;script&gt;</p>
-<p class="p1">/* --- service worker registration using inline blob (caches this page) --- */</p>
-<p class="p1">if ('serviceWorker' in navigator) {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const swCode = `</p>
-<p class="p1"><span class="Apple-converted-space">    </span>self.addEventListener('install', ev =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>ev.waitUntil(</p>
-<p class="p1"><span class="Apple-converted-space">        </span>caches.open('beach-volley-v1').then(cache =&gt; cache.addAll(['./']))</p>
-<p class="p1"><span class="Apple-converted-space">      </span>);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>});</p>
-<p class="p1"><span class="Apple-converted-space">    </span>self.addEventListener('fetch', ev =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>ev.respondWith(caches.match(ev.request).then(r =&gt; r || fetch(ev.request)));</p>
-<p class="p1"><span class="Apple-converted-space">    </span>});</p>
-<p class="p1"><span class="Apple-converted-space">  </span>`;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const blob = new Blob([swCode], {type:'application/javascript'});</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const swUrl = URL.createObjectURL(blob);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>navigator.serviceWorker.register(swUrl).catch(()=&gt;{/*ignore*/});</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">/* --- app logic --- */</p>
-<p class="p1">(function(){</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const generateBtn = document.getElementById('generateBtn');</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const updateBtn = document.getElementById('updateBtn');</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const resetBtn = document.getElementById('resetBtn');</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const matchesTbody = document.querySelector('#matchesTable tbody');</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const statsTbody = document.querySelector('#statsTable tbody');</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>function getNames(){</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const names=[];</p>
-<p class="p1"><span class="Apple-converted-space">    </span>for(let i=0;i&lt;5;i++){ const v=document.getElementById('p'+i).value.trim(); names.push(v||('Player'+(i+1))); }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>return names;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>function shuffle(arr){</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const a = arr.slice();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>for(let i=a.length-1;i&gt;0;i--){</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const j=Math.floor(Math.random()*(i+1));</p>
-<p class="p1"><span class="Apple-converted-space">      </span>[a[i],a[j]]=[a[j],a[i]];</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>return a;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>function generateBalancedMatches(){</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const players = getNames();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>// Create rest list with each player exactly twice, then shuffle</p>
-<p class="p1"><span class="Apple-converted-space">    </span>let restList = [];</p>
-<p class="p1"><span class="Apple-converted-space">    </span>players.forEach(p=&gt;{ restList.push(p); restList.push(p); });</p>
-<p class="p1"><span class="Apple-converted-space">    </span>restList = shuffle(restList);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>// Ensure restList covers all 10 matches; if shuffle produced same player more than twice due to bug, we'll regenerate</p>
-<p class="p1"><span class="Apple-converted-space">    </span>while(restList.length &lt; 10) restList = restList.concat(shuffle(players)).slice(0,10);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>// Build matches</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const matches=[];</p>
-<p class="p1"><span class="Apple-converted-space">    </span>for(let i=0;i&lt;10;i++){</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const resting = restList[i];</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const active = players.filter(p=&gt;p!==resting);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const shuffledActive = shuffle(active);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const t1 = [shuffledActive[0], shuffledActive[1]];</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const t2 = [shuffledActive[2], shuffledActive[3]];</p>
-<p class="p1"><span class="Apple-converted-space">      </span>matches.push({match:i+1, t1, t2, resting, winner:'', s1:'', s2:''});</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>return matches;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>function renderMatches(matches){</p>
-<p class="p1"><span class="Apple-converted-space">    </span>matchesTbody.innerHTML='';</p>
-<p class="p1"><span class="Apple-converted-space">    </span>matches.forEach(m=&gt;{</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const tr = document.createElement('tr');</p>
-<p class="p1"><span class="Apple-converted-space">      </span>tr.innerHTML = `</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;td&gt;${m.match}&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;td&gt;${escapeHtml(m.t1[0])} / ${escapeHtml(m.t1[1])}&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;td&gt;${escapeHtml(m.t2[0])} / ${escapeHtml(m.t2[1])}&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;td&gt;${escapeHtml(m.resting)}&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;select data-match="${m.match}" class="winnerSel" aria-label="Winner"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;option value=""&gt;&lt;/option&gt;&lt;option value="1"&gt;1&lt;/option&gt;&lt;option value="2"&gt;2&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/select&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;td&gt;&lt;input class="score1" data-match="${m.match}" type="number" min="0" step="1"&gt;&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;td&gt;&lt;input class="score2" data-match="${m.match}" type="number" min="0" step="1"&gt;&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>`;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>matchesTbody.appendChild(tr);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>});</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>function escapeHtml(s){ return String(s).replace(/&amp;/g,'&amp;amp;').replace(/&lt;/g,'&amp;lt;').replace(/&gt;/g,'&amp;gt;'); }</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>function renderStats(names){</p>
-<p class="p1"><span class="Apple-converted-space">    </span>statsTbody.innerHTML='';</p>
-<p class="p1"><span class="Apple-converted-space">    </span>names.forEach(n=&gt;{</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const tr = document.createElement('tr');</p>
-<p class="p1"><span class="Apple-converted-space">      </span>tr.innerHTML = `&lt;td&gt;${escapeHtml(n)}&lt;/td&gt;&lt;td class="wins"&gt;0&lt;/td&gt;&lt;td class="losses"&gt;0&lt;/td&gt;&lt;td class="scored"&gt;0&lt;/td&gt;&lt;td class="conceded"&gt;0&lt;/td&gt;&lt;td class="total"&gt;0&lt;/td&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>statsTbody.appendChild(tr);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>});</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>function readMatchesFromTable(){</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const rows = Array.from(matchesTbody.querySelectorAll('tr'));</p>
-<p class="p1"><span class="Apple-converted-space">    </span>return rows.map(row=&gt;{</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const cells = row.children;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const match = Number(cells[0].textContent);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const t1 = cells[1].textContent.split('/').map(s=&gt;s.trim());</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const t2 = cells[2].textContent.split('/').map(s=&gt;s.trim());</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const resting = cells[3].textContent.trim();</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const winnerSel = row.querySelector('.winnerSel');</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const winner = winnerSel ? winnerSel.value : '';</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const s1input = row.querySelector('.score1');</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const s2input = row.querySelector('.score2');</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const s1 = s1input &amp;&amp; s1input.value !== '' ? Number(s1input.value) : null;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const s2 = s2input &amp;&amp; s2input.value !== '' ? Number(s2input.value) : null;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>return {match, t1, t2, resting, winner, s1, s2};</p>
-<p class="p1"><span class="Apple-converted-space">    </span>});</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>function updateStats(){</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const names = getNames();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const stats = {};</p>
-<p class="p1"><span class="Apple-converted-space">    </span>names.forEach(n=&gt; stats[n] = {wins:0, losses:0, scored:0, conceded:0});</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const matches = readMatchesFromTable();</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>matches.forEach(m=&gt;{</p>
-<p class="p1"><span class="Apple-converted-space">      </span>if(!m.t1[0] || !m.t2[0]) return;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>// played count not shown but we still consider players present</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>const score1 = (m.s1 === null) ? 0 : m.s1;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const score2 = (m.s2 === null) ? 0 : m.s2;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>// add points</p>
-<p class="p1"><span class="Apple-converted-space">      </span>m.t1.forEach(p =&gt; { if(!(p in stats)) stats[p]={wins:0,losses:0,scored:0,conceded:0}; stats[p].scored += score1; stats[p].conceded += score2; });</p>
-<p class="p1"><span class="Apple-converted-space">      </span>m.t2.forEach(p =&gt; { if(!(p in stats)) stats[p]={wins:0,losses:0,scored:0,conceded:0}; stats[p].scored += score2; stats[p].conceded += score1; });</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>// determine winner: dropdown takes priority; else infer from scores if both present</p>
-<p class="p1"><span class="Apple-converted-space">      </span>let winner = m.winner;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>if(!winner &amp;&amp; m.s1 !== null &amp;&amp; m.s2 !== null){</p>
-<p class="p1"><span class="Apple-converted-space">        </span>if(m.s1 &gt; m.s2) winner = '1';</p>
-<p class="p1"><span class="Apple-converted-space">        </span>else if(m.s2 &gt; m.s1) winner = '2';</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p1"><span class="Apple-converted-space">      </span>if(winner === '1'){ m.t1.forEach(p=&gt;stats[p].wins++); m.t2.forEach(p=&gt;stats[p].losses++); }</p>
-<p class="p1"><span class="Apple-converted-space">      </span>else if(winner === '2'){ m.t2.forEach(p=&gt;stats[p].wins++); m.t1.forEach(p=&gt;stats[p].losses++); }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>// render stats in input order</p>
-<p class="p1"><span class="Apple-converted-space">    </span>renderStats(getNames());</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const rows = Array.from(statsTbody.querySelectorAll('tr'));</p>
-<p class="p1"><span class="Apple-converted-space">    </span>rows.forEach((tr, idx)=&gt;{</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const n = getNames()[idx];</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const s = stats[n] || {wins:0,losses:0,scored:0,conceded:0};</p>
-<p class="p1"><span class="Apple-converted-space">      </span>tr.querySelector('.wins').textContent = s.wins;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>tr.querySelector('.losses').textContent = s.losses;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>tr.querySelector('.scored').textContent = s.scored;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>tr.querySelector('.conceded').textContent = s.conceded;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>tr.querySelector('.total').textContent = (s.scored - s.conceded);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>});</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>function resetScores(){</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const rows = Array.from(matchesTbody.querySelectorAll('tr'));</p>
-<p class="p1"><span class="Apple-converted-space">    </span>rows.forEach(row=&gt;{</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const sel = row.querySelector('.winnerSel');</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const s1 = row.querySelector('.score1');</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const s2 = row.querySelector('.score2');</p>
-<p class="p1"><span class="Apple-converted-space">      </span>if(sel) sel.value = '';</p>
-<p class="p1"><span class="Apple-converted-space">      </span>if(s1) s1.value = '';</p>
-<p class="p1"><span class="Apple-converted-space">      </span>if(s2) s2.value = '';</p>
-<p class="p1"><span class="Apple-converted-space">    </span>});</p>
-<p class="p1"><span class="Apple-converted-space">    </span>renderStats(getNames());</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>// wire buttons</p>
-<p class="p1"><span class="Apple-converted-space">  </span>generateBtn.addEventListener('click', ()=&gt;{</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const matches = generateBalancedMatches();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>renderMatches(matches);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>renderStats(getNames());</p>
-<p class="p1"><span class="Apple-converted-space">  </span>});</p>
-<p class="p1"><span class="Apple-converted-space">  </span>updateBtn.addEventListener('click', updateStats);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>resetBtn.addEventListener('click', resetScores);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>// live update stats header when names change</p>
-<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById('nameInputs').addEventListener('input', ()=&gt; renderStats(getNames()));</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>// initial empty stats</p>
-<p class="p1"><span class="Apple-converted-space">  </span>renderStats(getNames());</p>
-<p class="p1">})();</p>
-<p class="p1">&lt;/script&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+<h2>Beach Volleyball — Mini App</h2>
+<p class="muted">Enter 5 player names, generate a balanced 10-match grid, input winners/scores and update stats.</p>
+
+<div>
+  <div style="margin-bottom:8px;">
+    <div class="grid" id="nameInputs">
+      <input>
+      <input>
+      <input>
+      <input>
+      <input>
+    </div>
+  </div>
+
+  <button id="generateBtn">Generate Matches</button>
+  <button id="updateBtn">Update Stats</button>
+  <button id="resetBtn">Reset Scores/Winners</button>
+</div>
+
+<h3>Matches</h3>
+<table id="matchesTable" aria-label="Matches table">
+  <thead>
+    <tr>
+      <th>#</th><th>Team 1</th><th>Team 2</th><th>Resting</th><th>Winner</th><th>Score T1</th><th>Score T2</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<h3>Player Stats</h3>
+<table id="statsTable" aria-label="Player stats">
+  <thead>
+    <tr><th>Player</th><th>Wins</th><th>Losses</th><th>Points Scored</th><th>Points Conceded</th><th>Total Points</th></tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<script>
+(function(){
+  const generateBtn = document.getElementById('generateBtn');
+  const updateBtn = document.getElementById('updateBtn');
+  const resetBtn = document.getElementById('resetBtn');
+  const matchesTbody = document.querySelector('#matchesTable tbody');
+  const statsTbody = document.querySelector('#statsTable tbody');
+
+  function getNames(){
+    const names = [];
+    for(let i=0;i<5;i++){
+      const v = document.getElementById('p'+i).value.trim();
+      names.push(v || ('Player'+(i+1)));
+    }
+    return names;
+  }
+
+  function shuffle(arr){
+    const a = arr.slice();
+    for(let i=a.length-1;i>0;i--){
+      const j=Math.floor(Math.random()*(i+1));
+      [a[i],a[j]]=[a[j],a[i]];
+    }
+    return a;
+  }
+
+  function generateBalancedMatches(){
+    const players = getNames();
+    // create restList with each player twice
+    let restList = [];
+    players.forEach(p=>{ restList.push(p); restList.push(p); });
+    restList = shuffle(restList);
+
+    // ensure restList length 10, if shuffle produces same consecutive rests for same player it's OK
+    // create matches
+    const matches = [];
+    for(let i=0;i<10;i++){
+      const resting = restList[i];
+      const active = players.filter(p=>p!==resting);
+      const shuffledActive = shuffle(active);
+      const t1 = [shuffledActive[0], shuffledActive[1]];
+      const t2 = [shuffledActive[2], shuffledActive[3]];
+      matches.push({match: i+1, t1, t2, resting, winner:'', s1:'', s2:''});
+    }
+    return matches;
+  }
+
+  function renderMatches(matches){
+    matchesTbody.innerHTML='';
+    matches.forEach(m=>{
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${m.match}</td>
+        <td>${escapeHtml(m.t1[0])} / ${escapeHtml(m.t1[1])}</td>
+        <td>${escapeHtml(m.t2[0])} / ${escapeHtml(m.t2[1])}</td>
+        <td>${escapeHtml(m.resting)}</td>
+        <td>
+          <select data-match="${m.match}" class="winnerSel">
+            <option value=""></option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+          </select>
+        </td>
+        <td><input type="number" min="0" step="1" class="score1" data-match="${m.match}" style="width:80px"></td>
+        <td><input type="number" min="0" step="1" class="score2" data-match="${m.match}" style="width:80px"></td>`;
+      matchesTbody.appendChild(tr);
+    });
+  }
+
+  function escapeHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  function renderStats(names){
+    statsTbody.innerHTML='';
+    names.forEach(n=>{
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${escapeHtml(n)}</td><td class="played">0</td><td class="wins">0</td><td class="losses">0</td><td class="scored">0</td><td class="conceded">0</td><td class="total">0</td>`;
+      statsTbody.appendChild(tr);
+    });
+  }
+
+  function readMatchesFromTable(){
+    // read current matches from DOM rows
+    const rows = Array.from(matchesTbody.querySelectorAll('tr'));
+    return rows.map(row=>{
+      const cells = row.children;
+      const match = Number(cells[0].textContent);
+      const t1txt = cells[1].textContent.split(' / ').map(s=>s.trim());
+      const t2txt = cells[2].textContent.split(' / ').map(s=>s.trim());
+      const resting = cells[3].textContent.trim();
+      const winnerSel = row.querySelector('.winnerSel');
+      const winner = winnerSel ? winnerSel.value : '';
+      const s1input = row.querySelector('.score1');
+      const s2input = row.querySelector('.score2');
+      const s1 = s1input && s1input.value !== '' ? Number(s1input.value) : null;
+      const s2 = s2input && s2input.value !== '' ? Number(s2input.value) : null;
+      return {match, t1: t1txt, t2: t2txt, resting, winner, s1, s2};
+    });
+  }
+
+  function updateStats(){
+    const names = getNames();
+    const stats = {};
+    names.forEach(n=> stats[n]={played:0,wins:0,losses:0,scored:0,conceded:0});
+    const matches = readMatchesFromTable();
+
+    matches.forEach(m=>{
+      // skip invalid rows where teams not present
+      if(!m.t1[0] || !m.t2[0]) return;
+      // for each player in teams, increment played
+      m.t1.concat(m.t2).forEach(p=>{
+        if(!(p in stats)) stats[p]={played:0,wins:0,losses:0,scored:0,conceded:0};
+        stats[p].played += 1;
+      });
+      // points handling
+      const score1 = (m.s1===null)?0:m.s1;
+      const score2 = (m.s2===null)?0:m.s2;
+      // add points scored/conceded
+      m.t1.forEach(p=>{ stats[p].scored += score1; stats[p].conceded += score2; });
+      m.t2.forEach(p=>{ stats[p].scored += score2; stats[p].conceded += score1; });
+
+      // winner by dropdown if set; if not set but scores present, determine winner by scores
+      let winner = m.winner;
+      if(!winner){
+        if(m.s1!==null && m.s2!==null){
+          if(m.s1 > m.s2) winner = '1';
+          else if(m.s2 > m.s1) winner = '2';
+        }
+      }
+      if(winner==='1'){
+        m.t1.forEach(p=>{ stats[p].wins += 1; });
+        m.t2.forEach(p=>{ stats[p].losses += 1; });
+      } else if(winner==='2'){
+        m.t2.forEach(p=>{ stats[p].wins += 1; });
+        m.t1.forEach(p=>{ stats[p].losses += 1; });
+      }
+    });
+
+    // render to table (in order of current name inputs)
+    renderStats(names);
+    const rows = Array.from(statsTbody.querySelectorAll('tr'));
+    rows.forEach((tr, idx)=>{
+      const n = names[idx];
+      const s = stats[n] || {played:0,wins:0,losses:0,scored:0,conceded:0};
+      tr.querySelector('.played').textContent = s.played;
+      tr.querySelector('.wins').textContent = s.wins;
+      tr.querySelector('.losses').textContent = s.losses;
+      tr.querySelector('.scored').textContent = s.scored;
+      tr.querySelector('.conceded').textContent = s.conceded;
+      tr.querySelector('.total').textContent = s.scored - s.conceded;
+    });
+  }
+
+  // reset winners/scores in matches table
+  function resetScores(){
+    const rows = Array.from(matchesTbody.querySelectorAll('tr'));
+    rows.forEach(row=>{
+      const sel = row.querySelector('.winnerSel');
+      const s1 = row.querySelector('.score1');
+      const s2 = row.querySelector('.score2');
+      if(sel) sel.value = '';
+      if(s1) s1.value = '';
+      if(s2) s2.value = '';
+    });
+    // clear stats visually
+    renderStats(getNames());
+  }
+
+  // initial render
+  renderStats(getNames());
+
+  generateBtn.addEventListener('click', ()=>{
+    const matches = generateBalancedMatches();
+    renderMatches(matches);
+    // clear stats and winners/scores
+    renderStats(getNames());
+  });
+
+  updateBtn.addEventListener('click', ()=>{
+    updateStats();
+  });
+
+  resetBtn.addEventListener('click', ()=>{
+    resetScores();
+  });
+
+  // allow live update when name inputs change (update stat player order)
+  document.getElementById('nameInputs').addEventListener('input', ()=>{
+    renderStats(getNames());
+  });
+
+})();</script>
 </body>
 </html>
